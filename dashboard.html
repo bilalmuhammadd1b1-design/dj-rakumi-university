@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0908" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>DJ Rakumi University — Admin</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#0a0908; --gold:#ffc23c; --gold-2:#ffb300; --orange:#ff7a1a; --white:#fff; --muted:#9b958a; --line:rgba(255,255,255,0.08); --gold-line:rgba(255,194,60,0.3); --panel:#141210; }
+    * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; min-width:0; }
+    body { font-family:"Inter",system-ui,sans-serif; background:var(--bg); color:var(--white); line-height:1.6; font-size:16px; min-height:100vh; }
+    body::before { content:""; position:fixed; inset:0; z-index:-1; background: radial-gradient(70% 40% at 50% -8%, rgba(255,122,26,0.18), transparent 60%), radial-gradient(50% 35% at 90% 5%, rgba(255,194,60,0.1), transparent 60%); pointer-events:none; }
+    .accent-bar { height:3px; background:linear-gradient(90deg,var(--orange),var(--gold),var(--orange)); }
+    header { display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid var(--line); }
+    .logo { font-family:"Anton",sans-serif; font-size:16px; letter-spacing:1.5px; text-transform:uppercase; display:flex; align-items:center; gap:7px; }
+    .logo b { color:var(--gold); font-weight:400; }
+    .logo small { display:block; font-family:"Inter"; font-size:10px; letter-spacing:2px; color:var(--muted); font-weight:700; }
+    .btn-ghost { font-family:inherit; font-size:13px; font-weight:700; color:var(--gold); background:transparent; border:1px solid var(--gold-line); border-radius:100px; padding:7px 14px; cursor:pointer; }
+    .btn-ghost:active { transform:scale(0.97); }
+    .wrap { max-width:720px; margin:0 auto; padding:24px 18px 60px; }
+
+    /* Login */
+    .login-card { max-width:380px; margin:8vh auto 0; background:linear-gradient(180deg,rgba(255,194,60,0.05),rgba(18,16,14,0.92)); border:1px solid var(--line); border-radius:22px; padding:28px 22px; box-shadow:0 24px 60px rgba(0,0,0,0.5); }
+    .login-card h1 { font-family:"Anton",sans-serif; font-weight:400; font-size:26px; text-transform:uppercase; margin-bottom:4px; }
+    .login-card .sub { color:var(--muted); font-size:14px; margin-bottom:22px; }
+    label { display:block; font-size:12px; font-weight:700; letter-spacing:0.4px; text-transform:uppercase; color:#e8e3d7; margin-bottom:6px; }
+    input { width:100%; font-family:inherit; font-size:16px; color:var(--white); background:#0e0d0b; border:1.5px solid rgba(255,255,255,0.1); border-radius:12px; padding:13px 15px; margin-bottom:14px; transition:border-color .15s,box-shadow .15s; }
+    input:focus { outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(255,194,60,0.16); }
+    .pw-wrap { position:relative; margin-bottom:14px; }
+    .pw-wrap input { margin-bottom:0; padding-right:68px; }
+    .pw-toggle { position:absolute; right:6px; top:50%; transform:translateY(-50%); background:transparent; border:none; color:var(--gold); font-weight:700; font-size:12.5px; cursor:pointer; padding:8px 10px; letter-spacing:0.3px; }
+    .btn { width:100%; font-family:inherit; font-weight:900; font-size:16px; text-transform:uppercase; letter-spacing:0.4px; color:#1a1200; background:linear-gradient(135deg,var(--gold),var(--gold-2) 45%,var(--orange)); border:none; border-radius:13px; padding:15px; cursor:pointer; box-shadow:0 10px 26px rgba(255,122,26,0.35); transition:transform .08s,filter .15s; }
+    .btn:hover { filter:brightness(1.05); } .btn:active { transform:scale(0.98); } .btn:disabled { opacity:0.6; cursor:not-allowed; }
+    .msg { font-size:13.5px; font-weight:600; margin-top:12px; text-align:center; min-height:18px; }
+    .msg.err { color:#ff8080; } .msg.ok { color:#8fe08f; }
+
+    /* Dashboard */
+    .stats { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:24px; }
+    .stat { background:linear-gradient(180deg,rgba(255,194,60,0.06),rgba(18,16,14,0.92)); border:1px solid var(--gold-line); border-radius:16px; padding:16px 16px; display:flex; flex-direction:column; gap:5px; }
+    .stat .num { font-family:"Anton",sans-serif; font-size:34px; line-height:1; color:var(--gold); }
+    .stat .lbl { font-size:11px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:var(--muted); }
+    @media (min-width:640px) { .stats { grid-template-columns:repeat(4,1fr); } }
+    .toolbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+    .toolbar h2 { font-family:"Anton",sans-serif; font-weight:400; font-size:18px; text-transform:uppercase; letter-spacing:1px; }
+
+    .lead { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin-bottom:10px; }
+    .lead .top { display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:6px; }
+    .lead .name { font-weight:800; font-size:16px; }
+    .lead .date { font-size:11.5px; color:var(--muted); white-space:nowrap; }
+    .lead .row { display:flex; align-items:center; gap:8px; font-size:14px; color:#d8d2c7; }
+    .lead .row a { color:var(--gold); text-decoration:none; font-weight:700; }
+    .lead .row .k { color:var(--muted); font-size:12px; width:52px; display:inline-block; }
+    .empty { text-align:center; color:var(--muted); padding:40px 10px; }
+    .hidden { display:none !important; }
+    .spinner { text-align:center; color:var(--muted); padding:30px; }
+  </style>
+</head>
+<body>
+  <div class="accent-bar"></div>
+  <header>
+    <span class="logo">🔥 <span>DJ <b>Rakumi</b> University<small>ADMIN</small></span></span>
+    <button class="btn-ghost hidden" id="logoutBtn">Logout</button>
+  </header>
+
+  <main class="wrap">
+    <!-- LOGIN -->
+    <section id="loginView">
+      <div class="login-card">
+        <h1>Admin Login</h1>
+        <p class="sub">Shiga domin ka ga mutanen da suka join.</p>
+        <form id="loginForm">
+          <label for="email">Email</label>
+          <input type="email" id="email" autocomplete="username" inputmode="email" placeholder="you@gmail.com" required />
+          <label for="password">Password</label>
+          <div class="pw-wrap">
+            <input type="password" id="password" autocomplete="current-password" placeholder="••••••••" required />
+            <button type="button" class="pw-toggle" id="pwToggle">Show</button>
+          </div>
+          <button class="btn" type="submit" id="loginBtn">Log In</button>
+        </form>
+        <div class="msg" id="loginMsg"></div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="dashView" class="hidden">
+      <div class="stats">
+        <div class="stat"><span class="num" id="count">—</span><span class="lbl">Total Signups</span></div>
+        <div class="stat"><span class="num" id="today">—</span><span class="lbl">Today</span></div>
+        <div class="stat"><span class="num" id="week">—</span><span class="lbl">This Week</span></div>
+        <div class="stat"><span class="num" id="withEmail">—</span><span class="lbl">With Email</span></div>
+      </div>
+      <div class="toolbar">
+        <h2>Leads</h2>
+        <button class="btn-ghost" id="refreshBtn">↻ Refresh</button>
+      </div>
+      <div id="leadsList"><div class="spinner">Loading…</div></div>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
